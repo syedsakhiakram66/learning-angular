@@ -1,24 +1,40 @@
 import {Component} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-root',
+    standalone: true,
+    imports: [CommonModule, FormsModule],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {
-    title = 'my-angular-app';
-    count = 0;
+    title = 'My Angular Todo App';
+    newTodo = '';
+    todos = [
+        {id: 1, text: 'Learn Angular', completed: false},
+        {id: 2, text: 'Build an app', completed: false}
+    ];
 
-    increment() {
-        this.count++;
-    }
+    addTodo() {
+        if (this.newTodo.trim()) {
+            this.todos.push({
+                id: Date.now(),
+                text: this.newTodo,
+                completed: false
+            });
+            this.newTodo = '';
+        }
+  }
 
-    decrement() {
-        this.count--;
-    }
+        deleteTodo(id: number) {
+            this.todos = this.todos.filter(todo => todo.id !== id);
+        }
 
-    reset() {
-        this.count = 0;
-    }
+        toggleComplete(todo: any) {
+            todo.completed = !todo.completed;
+        }
 }
+  
