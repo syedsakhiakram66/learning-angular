@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TodoItemComponent } from './todo-item-component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, TodoItemComponent],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
@@ -36,5 +37,5 @@ export class AppComponent {
         toggleComplete(todo: any) {
             todo.completed = !todo.completed;
         }
-}
+    }
   
